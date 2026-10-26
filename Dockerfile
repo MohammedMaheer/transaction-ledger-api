@@ -4,7 +4,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt \
-    && useradd --create-home --uid 10001 ledger
+    && useradd --create-home --uid 10001 ledger \
+    && chown ledger:ledger /app
 COPY --chown=ledger:ledger . .
 USER ledger
 EXPOSE 8000
