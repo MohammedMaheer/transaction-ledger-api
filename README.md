@@ -194,9 +194,11 @@ and `alembic check` passed. Ruff lint/format checks, Python 3.12 syntax parsing,
 transfers, duplicates, balance/history retrieval, validation errors, health, and OpenAPI;
 a direct PostgreSQL query reconciled stored balances with ledger totals.
 
-Docker was not installed in the implementation environment. Compose YAML and startup
-dependencies were initially validated statically. The Docker path is also verified on
-the Hostinger VPS during deployment. To reproduce it on a Docker-enabled machine:
+Docker was not installed locally, so its path was verified on the Hostinger VPS instead.
+The Linux container run used Python 3.12.15 and an isolated PostgreSQL 16 test service:
+**113 tests passed in 19.08 seconds**, including coverage reporting, with exit code zero.
+The production image built successfully and its Alembic migration and readiness check passed.
+To reproduce the Docker setup:
 
 ```bash
 cp .env.example .env
